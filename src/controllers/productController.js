@@ -1,0 +1,96 @@
+const Product = require('../models/product');
+
+exports.createProduct = async (req, res, next) => {
+  try {
+    const product = await Product.create(req.body);
+    res.status(201).json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllProducts = async (req, res, next) => {
+  try {
+    if (req.query.q) {
+      return this.searchProducts(req, res, next);
+    }
+    const products = await Product.findAll();
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getProductById = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updateProduct = async (req, res, next) => {
+  try {
+    const product = await Product.update(req.params.id, req.body);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    const product = await Product.delete(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.searchProducts = async (req, res, next) => {
+  try {
+    const query = req.query.q;
+    console.log("Search query:", query);
+
+    if (!query) {
+      return res.status(400).json({ message: "Search query is required" });
+    }
+
+    const products = await Product.search(query);
+    console.log("Search results:", products);
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "No products found matching your search" });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error in searchProducts:", error);
+    next(error);
+  }
+};
+
+exports.filterProducts = async (req, res, next) => {
+  try {
+    const filters = {
+      category: req.query.category,
+      minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
+      maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
+      inStock: req.query.inStock ? req.query.inStock === 'true' : undefined
+    };
+    const products = await Product.filter(filters);
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
+};
