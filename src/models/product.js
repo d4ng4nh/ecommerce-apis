@@ -8,7 +8,11 @@ const Product = {
   findById: (id) => Promise.resolve(products.find(p => p.id === Number(id))),
 
   create: (productData) => {
-    const newProduct = { id: nextId++, ...productData };
+    const newProduct = {
+      id: nextId++,
+      ...productData,
+      popularity: productData.popularity || 0 // Đặt giá trị mặc định nếu không được cung cấp
+    };
     products.push(newProduct);
     return Promise.resolve(newProduct);
   },
@@ -64,7 +68,6 @@ const Product = {
         } else if (sortBy === 'name') {
           return order === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
         } else if (sortBy === 'popularity') {
-          // Giả sử chúng ta có một trường 'popularity' trong sản phẩm
           return order === 'asc' ? a.popularity - b.popularity : b.popularity - a.popularity;
         }
         return 0;

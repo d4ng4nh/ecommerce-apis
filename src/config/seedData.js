@@ -5,7 +5,8 @@ const products = [
     description: 'Powerful laptop for work and gaming',
     price: 1200,
     category: 'Electronics',
-    inStock: true
+    inStock: true,
+    popularity: 85
   },
   {
     id: 2,
@@ -13,7 +14,8 @@ const products = [
     description: 'Latest smartphone with advanced features',
     price: 800,
     category: 'Electronics',
-    inStock: true
+    inStock: true,
+    popularity: 92
   },
   {
     id: 3,
@@ -21,7 +23,8 @@ const products = [
     description: 'Comfortable shoes for jogging and running',
     price: 100,
     category: 'Sports',
-    inStock: true
+    inStock: true,
+    popularity: 78
   },
   {
     id: 4,
@@ -29,7 +32,8 @@ const products = [
     description: 'Automatic coffee machine for home use',
     price: 150,
     category: 'Home Appliances',
-    inStock: false
+    inStock: false,
+    popularity: 65
   },
   {
     id: 5,
@@ -37,7 +41,8 @@ const products = [
     description: 'Durable backpack for hiking and traveling',
     price: 80,
     category: 'Outdoor',
-    inStock: true
+    inStock: true,
+    popularity: 70
   }
 ];
 

@@ -5,7 +5,8 @@ const productSchema = Joi.object({
   description: Joi.string().required(),
   price: Joi.number().min(0).required(),
   category: Joi.string().required(),
-  inStock: Joi.boolean()
+  inStock: Joi.boolean(),
+  popularity: Joi.number().min(0).max(100).default(0) // Thêm trường popularity
 });
 
 module.exports = (req, res, next) => {
