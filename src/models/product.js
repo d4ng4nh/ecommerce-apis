@@ -34,8 +34,8 @@ const Product = {
   search: (query) => {
     console.log("Searching for:", query);
     const lowercaseQuery = query.toLowerCase();
-    const results = products.filter(p => 
-      p.name.toLowerCase().includes(lowercaseQuery) || 
+    const results = products.filter(p =>
+      p.name.toLowerCase().includes(lowercaseQuery) ||
       p.description.toLowerCase().includes(lowercaseQuery)
     );
     console.log("Search results in model:", results);
