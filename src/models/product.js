@@ -43,14 +43,17 @@ const Product = {
   },
 
   filter: (filters) => {
-    return Promise.resolve(products.filter(p => {
-      if (filters.category && p.category !== filters.category) return false;
-      if (filters.minPrice && p.price < filters.minPrice) return false;
-      if (filters.maxPrice && p.price > filters.maxPrice) return false;
-      if (filters.inStock !== undefined && p.inStock !== filters.inStock) return false;
-      return true;
-    }));
-  }
-};
+    console.log('Filtering with:', filters);
+    return Promise.resolve(
+      products.filter(p => {
+        if (filters.category && p.category !== filters.category) return false;
+        if (filters.minPrice !== undefined && p.price < filters.minPrice) return false;
+        if (filters.maxPrice !== undefined && p.price > filters.maxPrice) return false;
+        if (filters.inStock !== undefined && p.inStock !== filters.inStock) return false;
+        return true;
+      })
+    );
+  },
+}
 
 module.exports = Product;

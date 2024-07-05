@@ -82,15 +82,24 @@ exports.searchProducts = async (req, res, next) => {
 
 exports.filterProducts = async (req, res, next) => {
   try {
+    console.log('Received query parameters:', req.query);
+    
     const filters = {
       category: req.query.category,
       minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
       maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
       inStock: req.query.inStock ? req.query.inStock === 'true' : undefined
     };
+    
+    console.log('Processed filters:', filters);
+    
     const products = await Product.filter(filters);
+    
+    console.log('Filtered products:', JSON.stringify(products, null, 2));
+    
     res.json(products);
   } catch (error) {
+    console.error('Error in filterProducts:', error);
     next(error);
   }
 };

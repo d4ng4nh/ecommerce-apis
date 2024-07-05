@@ -23,7 +23,7 @@ const Cart = {
 
     addItem: (cartId, productId, quantity) => {
         const cart = carts.find(cart => cart.id === Number(cartId));
-  const product = products.find(product => product.id === Number(productId));
+        const product = products.find(product => product.id === Number(productId));
         if (cart && product) {
             const item = cart.products.find(item => item.product.id === productId);
             if (item) {
@@ -39,13 +39,13 @@ const Cart = {
     removeItem: (cartId, productId) => {
         const cart = carts.find(cart => cart.id === Number(cartId));
         if (cart) {
-          cart.products = cart.products.filter(item => item.product.id !== Number(productId));
-          return Promise.resolve(cart);
+            cart.products = cart.products.filter(item => item.product.id !== Number(productId));
+            return Promise.resolve(cart);
         }
         return Promise.reject(new Error('Cart not found'));
-      },
+    },
 
-      delete: (id) => {
+    delete: (id) => {
         const index = carts.findIndex(cart => cart.id === Number(id));
         if (index !== -1) {
             const deletedCart = carts.splice(index, 1)[0];
