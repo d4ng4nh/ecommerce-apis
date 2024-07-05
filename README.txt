@@ -97,8 +97,8 @@ Sản phẩm:
 15. Lấy trang thứ 2 với 5 sản phẩm mỗi trang, sắp xếp theo giá tăng dần:
    GET /api/products?page=2&limit=5&sortBy=price&order=asc
 
-16. Lấy trang đầu tiên với 20 sản phẩm mỗi trang, sắp xếp theo popularity giảm dần:
-   GET /api/products?page=1&limit=20&sortBy=popularity&order=desc
+16. Tìm kiếm với phân trang
+   GET /api/products?q=electronic&page=1&limit=5&sortBy=price&order=as
 
 Giỏ hàng:
 1. Tạo giỏ hàng mới
