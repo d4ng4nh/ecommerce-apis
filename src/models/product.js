@@ -73,6 +73,54 @@ const Product = {
         return 0;
       })
     );
+  },
+
+  findAllPaginated: (page = 1, limit = 10, sortBy = 'id', order = 'asc') => {
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const sortedProducts = [...products].sort((a, b) => {
+      if (sortBy === 'price' || sortBy === 'popularity') {
+        return order === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
+      } else if (sortBy === 'name') {
+        return order === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+      }
+      return 0;
+    });
+
+    return Promise.resolve({
+      products: sortedProducts.slice(startIndex, endIndex),
+      currentPage: page,
+      totalPages: Math.ceil(products.length / limit),
+      totalProducts: products.length
+    });
+  },
+
+  searchPaginated: (query, page = 1, limit = 10, sortBy = 'id', order = 'asc') => {
+    const lowercaseQuery = query.toLowerCase();
+    const filteredProducts = products.filter(p =>
+      p.name.toLowerCase().includes(lowercaseQuery) ||
+      p.description.toLowerCase().includes(lowercaseQuery)
+    );
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      if (sortBy === 'price' || sortBy === 'popularity') {
+        return order === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
+      } else if (sortBy === 'name') {
+        return order === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+      }
+      return 0;
+    });
+
+    return Promise.resolve({
+      products: sortedProducts.slice(startIndex, endIndex),
+      currentPage: page,
+      totalPages: Math.ceil(filteredProducts.length / limit),
+      totalProducts: filteredProducts.length
+    });
   }
 }
 

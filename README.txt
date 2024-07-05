@@ -10,6 +10,7 @@ Tính năng:
    - Xóa sản phẩm
    - Tìm kiếm sản phẩm theo từ khóa
    - Lọc sản phẩm theo danh mục, giá và tình trạng tồn kho
+   - Sắp xếp sản phẩm theo tên, theo giá, theo độ phổ biến
 
 2. Quản lý Giỏ hàng:
    - Tạo giỏ hàng mới
@@ -71,6 +72,33 @@ Sản phẩm:
 
 7. Lọc sản phẩm
    GET /api/products?category=Electronics&minPrice=100&maxPrice=1000&inStock=true
+
+8. Sắp xếp theo giá tăng dần:
+   GET /api/products?sortBy=price&order=asc
+
+9. Sắp xếp theo giá giảm dần:
+   GET /api/products?sortBy=price&order=desc
+
+10. Sắp xếp theo tên A-Z:
+   GET /api/products?sortBy=name&order=asc
+
+11. Sắp xếp theo tên Z-A:
+   GET /api/products?sortBy=name&order=desc
+
+12. Sắp xếp theo độ phổ biến tăng dần:
+   GET /api/products?sortBy=popularity&order=asc
+
+13. Sắp xếp theo độ phổ biến giảm dần:
+   GET /api/products?sortBy=popularity&order=desc
+
+14. Lấy trang đầu tiên với 10 sản phẩm mỗi trang:
+   GET /api/products?page=1&limit=10 
+
+15. Lấy trang thứ 2 với 5 sản phẩm mỗi trang, sắp xếp theo giá tăng dần:
+   GET /api/products?page=2&limit=5&sortBy=price&order=asc
+
+16. Lấy trang đầu tiên với 20 sản phẩm mỗi trang, sắp xếp theo popularity giảm dần:
+   GET /api/products?page=1&limit=20&sortBy=popularity&order=desc
 
 Giỏ hàng:
 1. Tạo giỏ hàng mới

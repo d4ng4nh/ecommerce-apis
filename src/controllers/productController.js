@@ -11,19 +11,20 @@ exports.createProduct = async (req, res, next) => {
 
 exports.getAllProducts = async (req, res, next) => {
   try {
-    let products;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sortBy = req.query.sortBy || 'id';
+    const order = req.query.order || 'asc';
+
+    let result;
 
     if (req.query.q) {
-      products = await Product.search(req.query.q);
+      result = await Product.searchPaginated(req.query.q, page, limit, sortBy, order);
     } else {
-      products = await Product.findAll();
+      result = await Product.findAllPaginated(page, limit, sortBy, order);
     }
 
-    if (req.query.sortBy) {
-      products = await Product.sort(req.query.sortBy, req.query.order);
-    }
-
-    res.json(products);
+    res.json(result);
   } catch (error) {
     next(error);
   }
