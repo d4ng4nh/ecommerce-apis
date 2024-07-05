@@ -86,9 +86,9 @@ exports.filterProducts = async (req, res, next) => {
 
     const filters = {
       category: req.query.category,
-      minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
-      maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
-      inStock: req.query.inStock ? req.query.inStock === 'true' : undefined
+      minPrice: req.query.minPrice ? parseFloat(req.query.minPrice) : undefined,
+      maxPrice: req.query.maxPrice ? parseFloat(req.query.maxPrice) : undefined,
+      inStock: req.query.inStock !== undefined ? req.query.inStock === 'true' : undefined
     };
 
     console.log('Processed filters:', filters);
