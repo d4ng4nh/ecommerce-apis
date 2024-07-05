@@ -98,7 +98,7 @@ Hướng dẫn sử dụng:
    GET /api/products?page=2&limit=5&sortBy=price&order=asc
 
 16. Tìm kiếm với phân trang
-   GET /api/products?q=electronic&page=1&limit=5&sortBy=price&order=as
+   GET /api/products?q=electronic&page=1&limit=5
 
 ### Giỏ hàng:
 1. Tạo giỏ hàng mới

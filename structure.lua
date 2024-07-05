@@ -18,8 +18,10 @@ backend-demo/
 │   │   └── errorHandler.js
 │   └── app.js
 │
-├── tests/
-│   └── product.test.js
-│
 ├── .gitignore
+│
+├── README.md
+│
+├── package-lock.json
+│
 └── package.json
