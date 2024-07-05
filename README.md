@@ -1,6 +1,6 @@
-E-commerce API
+# E-commerce API
 
-Tính năng:
+## Tính năng:
 
 1. Quản lý Sản phẩm:
    - Tạo sản phẩm mới
@@ -47,9 +47,9 @@ Hướng dẫn sử dụng:
 3. Khởi động server: npm start
 4. Truy cập API tại http://localhost:<PORT>/api
 
-API Endpoints:
+## API Endpoints:
 
-Sản phẩm:
+### Sản phẩm:
 1. Lấy tất cả sản phẩm
    GET /api/products
 
@@ -100,7 +100,7 @@ Sản phẩm:
 16. Tìm kiếm với phân trang
    GET /api/products?q=electronic&page=1&limit=5&sortBy=price&order=as
 
-Giỏ hàng:
+### Giỏ hàng:
 1. Tạo giỏ hàng mới
    POST /api/carts
 
