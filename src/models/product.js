@@ -54,6 +54,23 @@ const Product = {
       })
     );
   },
+
+  sort: (sortBy, order = 'asc') => {
+    console.log('Sorting by:', sortBy, 'Order:', order);
+    return Promise.resolve(
+      [...products].sort((a, b) => {
+        if (sortBy === 'price') {
+          return order === 'asc' ? a.price - b.price : b.price - a.price;
+        } else if (sortBy === 'name') {
+          return order === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+        } else if (sortBy === 'popularity') {
+          // Giả sử chúng ta có một trường 'popularity' trong sản phẩm
+          return order === 'asc' ? a.popularity - b.popularity : b.popularity - a.popularity;
+        }
+        return 0;
+      })
+    );
+  }
 }
 
 module.exports = Product;

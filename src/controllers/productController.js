@@ -11,10 +11,18 @@ exports.createProduct = async (req, res, next) => {
 
 exports.getAllProducts = async (req, res, next) => {
   try {
+    let products;
+
     if (req.query.q) {
-      return this.searchProducts(req, res, next);
+      products = await Product.search(req.query.q);
+    } else {
+      products = await Product.findAll();
     }
-    const products = await Product.findAll();
+
+    if (req.query.sortBy) {
+      products = await Product.sort(req.query.sortBy, req.query.order);
+    }
+
     res.json(products);
   } catch (error) {
     next(error);
