@@ -2,7 +2,7 @@
 
 ## Tính năng:
 
-1. Quản lý Sản phẩm:
+1. Quản lý Sản phẩm: 
    - Tạo sản phẩm mới
    - Lấy danh sách tất cả sản phẩm
    - Lấy thông tin chi tiết sản phẩm theo ID
